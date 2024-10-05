@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <script
+      src="https://kit.fontawesome.com/8f2d34ce9f.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="tailwind/tailwind.js"></script>
+    <style>
+      body{
+      font-family: "Montserrat", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+    }
+    </style>
+  </head>
+  <body class="">
+    <section class="flex justify-center">
+        <div class="hidden lg:flex lg:h-screen lg:rounded-tr-2xl lg:w-1/2 flex flex-col justify-center items-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-blue-900 opacity-75"></div>
+            <div class="relative text-center text-white p-10 space-y-5 z-10">
+                <h2 class="text-4xl font-bold">Welcome Back</h2>
+                <p class="text-lg">
+                    Log in to your account to continue enjoying personalized recommendations, exclusive deals, and a seamless shopping experience.
+                </p>
+            </div>
+        </div>
+      </div>
+
+      <div
+        class="h-screen flex justify-center items-center py-5 px-10 w-full lg:w-1/2 lg:px-24 xl:px-32"
+      >
+        <div class="container mx-auto space-y-7">
+          <div class="flex justify-center">
+            <img
+              src="images/img_avatar1.png"
+              alt="avatar"
+              class="w-20 h-20 rounded-full opacity-90"
+            />
+          </div>
+          <h1 class="text-black font-bold text-3xl text-center">Sign In</h1>
+          <form action="" class="space-y-5">
+            <div class="relative">
+              <input
+                type="text"
+                class="border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 py-3 px-7 rounded-md w-full"
+                placeholder="Email or Phone Number"
+                id="email"
+              />
+              <i
+                class="fa-regular fa-envelope absolute text-gray-500 right-3 top-1/2 transform -translate-y-1/2"
+              ></i>
+            </div>
+
+            <div class="relative">
+              <input
+                type="password"
+                class="border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 py-3 px-7 rounded-md w-full"
+                placeholder="Password"
+                id="password"
+              />
+              <i
+                class="fa-solid fa-lock text-gray-500 absolute right-3 top-1/2 transform -translate-y-1/2"
+              ></i>
+            </div>
+            <div class="space-y-2">
+              <div class="text-right">
+                <a
+                  href="forget.html"
+                  class="text-blue-500 hover:text-blue-700 text-sm"
+                  >Forgot Password?</a
+                >
+              </div>
+              <div class="relative w-full">
+                <button
+                  type="submit"
+                  class="bg-blue-800 w-full text-white text-center py-3 rounded-md px-7 flex items-center justify-center hover:bg-blue-900"
+                >
+                  <span class="flex items-center">
+                    Sign In
+                    <i class="fa-solid fa-arrow-right text-white ml-2"></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <p class="text-center font-medium">
+              Don't have an account yet?
+              <a
+                href="index.html"
+                class="text-red-500 hover:text-red-700 underline"
+                >sign up</a
+              >
+            </p>
+          </form>
+
+        </div>
+    </section>
+</body>
+</html>

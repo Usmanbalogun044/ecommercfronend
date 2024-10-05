@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Usercart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/8f2d34ce9f.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="tailwind/tailwind.js"></script>
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+
+      main {
+        flex: 1;
+      }
+
+      .blur-overlay {
+        background: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        display: none;
+      }
+      .visible {
+        display: block;
+      }
+      .dropdown-content {
+        display: none;
+      }
+      .dropdown-content.show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body class="">
+    <div class="bg-[#405189] z-10 sticky top-0">
+      <nav
+        class="py-4 flex justify-between items-center px-3 lg:mx-auto lg:container"
+      >
+        <div class="flex items-center space-x-5">
+          <button id="menuButton">
+            <i class="fa-solid fa-bars text-white text-md block lg:hidden"></i>
+          </button>
+          <a
+            href="Userdashboard.html"
+            class="text-md lg:text-2xl font-semibold text-white"
+            >MatthiOla</a
+          >
+        </div>
+        <div class="flex items-center space-x-4 lg:space-x-10">
+          <button
+            id="searchButton"
+            class="flex items-center text-white space-x-2 block lg:hover:text-[#6A8FDB]"
+          >
+            <i class="fa-solid fa-magnifying-glass text-sm"></i>
+            <p class="font-medium hidden lg:block">Search</p>
+          </button>
+          <div id="mobileSearch" class="hidden flex-grow relative">
+            <input
+              type="text"
+              class="w-full border-none focus:outline-none rounded pl-10 pr-7 lg:pr-10 py-1 placeholder:text-sm"
+              placeholder="Search for products"
+            />
+            <i
+              class="fa-solid fa-magnifying-glass text-xs absolute transform -translate-y-1/2 left-3 top-1/2 text-gray-400"
+            ></i>
+            <button
+              id="closeSearch"
+              class="absolute right-3 top-1/2 transform -translate-y-1/2"
+            >
+              <i class="fa-solid fa-times text-gray-400"></i>
+            </button>
+          </div>
+          <div class="relative">
+            <button
+              id="acc"
+              class="flex items-center text-white space-x-2 lg:hover:text-[#6A8FDB]"
+            >
+              <i class="fa-solid fa-user text-sm"></i>
+              <p class="font-medium hidden lg:block">Account</p>
+              <i class="fa-solid fa-angle-down hidden lg:block"></i>
+            </button>
+            <div
+              id="dropdown"
+              class="dropdown-content absolute bg-white shadow-lg mt-2 w-28 lg:hidden"
+            >
+              <button
+                id="account"
+                class="flex items-center space-x-1 text-xs w-full px-2 py-3 text-gray-800 text-xs hover:bg-gray-100"
+                ><i class="fa-solid fa-user"></i>
+                <p class="font-medium">My Account</p></button
+              >
+              <button
+                id="orders"
+                class="flex items-center space-x-1 text-xs w-full px-2 py-3 text-gray-800 hover:bg-gray-100"
+                ><i class="fa-solid fa-box"></i>
+                <p class="font-medium">Orders</p></button
+              >
+              <button
+                class="text-xs w-full flex items-center w-full space-x-1 px-2 py-3 text-gray-800 hover:bg-gray-100"
+              >
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                <p class="font-medium">Logout</p>
+              </button>
+            </div>
+          </div>
+          <button
+            id="cart"
+            class="flex items-center text-white space-x-2 lg:hover:text-[#6A8FDB]"
+          >
+            <i class="fa-solid fa-cart-shopping text-sm"></i>
+            <p class="font-medium hidden lg:block">Cart</p>
+          </button>
+        </div>
+      </nav>
+    </div>
+    <div
+      id="nav"
+      class="hidden bg-[#405189] h-screen flex flex-col justify-between w-3/4 fixed top-0 left-0 z-20"
+    >
+      <div class="">
+        <div class="flex items-center space-x-5 py-4 px-3">
+          <button id="cancel" class="">
+            <i class="fa-solid fa-xmark text-white text-md"></i>
+          </button>
+          <a href="Userdashboard.html" class="text-lg font-semibold text-white"
+            >MatthiOla</a
+          >
+        </div>
+
+        <div class="flex flex-col space-y-7 px-5 py-7">
+          <a
+            href="Userorder.html"
+            class="text-white text-md font-medium flex items-center space-x-5"
+          >
+            <i class="fa-solid fa-box"></i>
+            <p class="">Orders</p>
+          </a>
+          <a
+            href=""
+            class="text-white text-md font-medium flex items-center space-x-5"
+          >
+            <i class="fa-solid fa-cart-shopping"></i>
+            <p class="">View Cart</p>
+          </a>
+        </div>
+      </div>
+      <div class="flex flex-col py-10 space-y-7 px-5">
+        <a
+            href="Useraccount.html"
+            class="text-white text-md font-medium flex items-center space-x-5"
+          >
+            <i class="fa-solid fa-user"></i>
+            <p class="">My Account</p>
+          </a>
+        <a
+          href=""
+          class="text-white text-md font-medium flex items-center space-x-5"
+        >
+          <i class="fa-solid fa-arrow-right-from-bracket"></i>
+          <p class="">Logout</p>
+        </a>
+      </div>
+    </div>
+    <div id="overlay" class="blur-overlay"></div>
+
+    <main>
+      <!-- Main content -->
+      <div class="py-10 container mx-auto px-4">
+        <div
+          class="bg-gradient-to-b from-slate-100 to-white flex flex-col items-center justify-center space-y-5 px-4 py-7 shadow-xl rounded"
+        >
+          <div
+            class="bg-gray-100 flex justify-center items-center rounded-full w-[100px] h-[100px]"
+          >
+            <i class="fa-solid fa-cart-shopping text-3xl text-[#405189]"></i>
+          </div>
+          <div class="space-y-4 text-sm text-center">
+            <p class="font-medium">Your cart is empty!</p>
+            <p>Browse our categories and discover our best deals!</p>
+          </div>
+          <button
+            class="bg-[#405189] text-white text-sm py-4 px-4 text-center font-semibold uppercase rounded hover:bg-[#5569a6]"
+          >
+            start shopping
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="container mx-auto px-4 py-10 space-y-4 flex flex-col md:space-y-0 md:flex-row md:space-x-5"
+      >
+        <div class="bg-gradient-to-b from-slate-100 to-white shadow-xl rounded w-full md:w-[70%]">
+          <p class="py-3 border-b border-gray-200 px-3 font-medium text-xl">
+            Cart (3)
+          </p>
+          <div class="px-4">
+            <div class="py-4 border-b border-gray-300">
+              <div class="flex space-x-4">
+                <img src="images/oil.png" alt="oil" class="h-20 w-20 rounded" />
+                <div
+                  class="flex flex-col md:flex-row md:justify-between w-full"
+                >
+                  <div class="flex flex-col space-y-1">
+                    <p class="font-medium text-lg">
+                      MatthiOla Oil 1400ml Bottle
+                    </p>
+                    <p class="text-red-600 text-xs">Few units left</p>
+                    <p class="font-medium text-xs">MatthiOla</p>
+                  </div>
+                  <div class="">
+                    <p class="font-bold text-xl">$1,280</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between py-1">
+                <button
+                  class="text-[#405189] flex items-center space-x-3 rounded px-2 py-0.5 hover:bg-[#405189] hover:text-white transition duration-300"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                  <p class="uppercase font-medium">remove</p>
+                </button>
+                <div class="flex items-center space-x-3">
+                  <button class="bg-[#405189] text-white rounded w-6 h-6">
+                    -
+                  </button>
+                  <p>1</p>
+                  <button class="bg-[#405189] text-white rounded w-6 h-6">
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="py-4 border-b border-gray-300">
+              <div class="flex space-x-4 ">
+                <img src="images/oil.png" alt="oil" class="h-20 w-20 rounded" />
+                <div
+                  class="flex flex-col md:flex-row md:justify-between w-full"
+                >
+                  <div class="flex flex-col space-y-1">
+                    <p class="font-medium text-lg">
+                      MatthiOla Oil 1400ml Bottle
+                    </p>
+                    <p class="text-red-600 text-xs">Few units left</p>
+                    <p class="font-medium text-xs">MatthiOla</p>
+                  </div>
+                  <div class="">
+                    <p class="font-bold text-xl">$1,280</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex items-center justify-between py-1">
+                <button
+                  class="text-[#405189] flex items-center space-x-3 rounded px-2 py-0.5 hover:bg-[#405189] hover:text-white transition duration-300"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                  <p class="uppercase font-medium">remove</p>
+                </button>
+                <div class="flex items-center space-x-3">
+                  <button class="bg-[#405189] text-white rounded w-6 h-6">
+                    -
+                  </button>
+                  <p>1</p>
+                  <button class="bg-[#405189] text-white rounded w-6 h-6">
+                    +
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-gradient-to-b from-slate-100 to-white shadow-xl rounded w-full md:w-[25%] h-40">
+          <p class="border-b border-gray-300 px-3 py-2 font-medium uppercase text-lg">cart summary</p>
+          <div class="flex items-center justify-between px-3 py-3 border-b border-gray-300">
+            <p class="font-medium text-sm">Subtotal</p>
+            <p class="font-semibold text-lg">$ 20,128</p>
+          </div>
+          <div class="flex justify-center px-3 py-2.5">
+            <button class="bg-[#405189] text-white font-semibold px-3 py-3 text-sm uppercase w-full rounded">checkout ($ 20,128)</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="bg-[#405189] text-white py-10">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Company Info -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">About MatthiOla</h3>
+            <p class="text-sm">
+              Malthilola Nigeria Limited is an indigenous palm oil producing
+              company, focused on providing authentic, pure and high-quality
+              palm oil to its customers. Founded on a passion for excellence,
+              the company is committed to delivering only the best palm oil,
+              produced sustainably and with respect to the environment.
+            </p>
+          </div>
+          <!-- Customer Service -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Help Center</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Returns & Refunds</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Shipping & Delivery</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Terms & Conditions</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Social Media -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="hover:text-gray-300 hover:underline"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="hover:text-gray-300 hover:underline"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="hover:text-gray-300 hover:underline"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="hover:text-gray-300 hover:underline"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 border-t border-gray-500 pt-4 text-center">
+          <p class="text-sm">&copy; 2024 MatthiOla. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const menuButton = document.getElementById("menuButton");
+      const nav = document.getElementById("nav");
+      const overlay = document.getElementById("overlay");
+      const cancel = document.getElementById("cancel");
+      const searchButton = document.getElementById("searchButton");
+      const mobileSearch = document.getElementById("mobileSearch");
+      const closeSearch = document.getElementById("closeSearch");
+      const accButton = document.getElementById("acc");
+      const dropdown = document.getElementById("dropdown");
+
+      menuButton.addEventListener("click", () => {
+        nav.classList.toggle("hidden");
+        overlay.classList.toggle("visible");
+      });
+
+      overlay.addEventListener("click", () => {
+        nav.classList.add("hidden");
+        overlay.classList.remove("visible");
+      });
+
+      cancel.addEventListener("click", () => {
+        nav.classList.add("hidden");
+        overlay.classList.remove("visible");
+      });
+
+      searchButton.addEventListener("click", () => {
+        mobileSearch.classList.remove("hidden");
+        searchButton.classList.add("hidden");
+      });
+
+      closeSearch.addEventListener("click", () => {
+        mobileSearch.classList.add("hidden");
+        searchButton.classList.remove("hidden");
+      });
+
+      accButton.addEventListener("click", () => {
+        if (window.innerWidth >= 1024) {
+          // Check if the screen width is large (lg)
+          dropdown.classList.toggle("show");
+        }
+      });
+
+      window.addEventListener("click", (e) => {
+        if (
+          !accButton.contains(e.target) &&
+          !dropdown.contains(e.target) &&
+          window.innerWidth >= 1024
+        ) {
+          dropdown.classList.remove("show");
+        }
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth < 1024) {
+          dropdown.classList.remove("show");
+        }
+      });
+
+      const userCart = document.getElementById("cart");
+
+      // Add a click event listener to the cart button
+      userCart.addEventListener("click", () => {
+        window.location.href = "Usercart.html";
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+      const userAccount = document.getElementById("account");
+
+      userAccount.addEventListener("click", () => {
+        window.location.href = "Useraccount.html";
+      });
+    });
+
+     document.addEventListener("DOMContentLoaded", () => {
+      const userOrder = document.getElementById("orders");
+
+      userOrder.addEventListener("click", () => {
+        window.location.href = "Userorder.html";
+      });
+    });
+    </script>
+  </body>
+</html>

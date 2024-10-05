@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admindash</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+  <!-- <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet"> -->
+
+    <script
+      src="https://kit.fontawesome.com/8f2d34ce9f.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="tailwind/tailwind.js"></script>
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+      }
+      .active {
+        background-color: #1d4ed8;
+        color: white;
+      }
+      .table-container {
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
+      }
+      .dot-marker {
+      background-color: blue;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+       cursor: pointer;
+    }
+    .dot-label {
+      font-size: 12px;
+      font-weight: bold;
+      color: black;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+    .mapboxgl-marker {
+      display: flex;
+      align-items: center;
+    }
+      #chartLabels {
+        pointer-events: none; /* Ensure labels container doesn't interfere with chart interactions */
+      }
+      .legend-box {
+      width: 12px;
+      height: 12px;
+      margin-right: 4px;
+      border-radius: 50%;
+    }
+    </style>
+  </head>
+  <body class="">
+   <div class="lg:flex">
+  <!-- Sidebar Section -->
+  <section class="sticky top-0 z-20 lg:w-64 flex-shrink-0">
+  <div class="block lg:hidden py-4 px-6 bg-white z-20 relative border-b border-gray-200">
+    <div class="flex justify-between items-center">
+      <button id="bar">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <div class="flex items-center space-x-4">
+        <button id="search-icon">
+          <i class="fa-regular fa-bell"></i>
+        </button>
+        <button>
+          <img src="images/img_avatar1.png" alt="" class="w-7 h-7 rounded-full" />
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    id="nav"
+    class="fixed top-0 left-0 transform -translate-x-full lg:translate-x-0 flex flex-col justify-between space-y-7 h-screen bg-white w-64 px-4 py-10 transition-transform duration-300 ease-in-out z-50 border-r border-gray-200"
+  >
+    <div class="space-y-10">
+      <div class="text-center w-full">
+        <p class="text-blue-700 text-2xl py-1.5 font-semibold">
+          MatthiOla
+        </p>
+      </div>
+      <div class="w-full space-y-6">
+        <a
+          href="Admindashboard.html"
+          id="home-btn"
+          class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+        >
+          <i class="fa-solid fa-house"></i>
+          <p class="">Dashboard</p>
+        </a>
+        <a
+          href="adminproduct.html"
+          id="product-btn"
+          class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+        >
+          <i class="fa-solid fa-box"></i>
+          <p class="">Product</p>
+        </a>
+        <a
+          href="Admincustomers.html"
+          id="customers-btn"
+          class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+        >
+          <i class="fa-solid fa-user-group"></i>
+          <p class="">Customers</p>
+        </a>
+        <a
+          href="Adminorders.html"
+          id="orders-btn"
+          class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+        >
+          <i class="fa-solid fa-cart-shopping"></i>
+          <p class="">Orders</p>
+        </a>
+      </div>
+    </div>
+    <div class="space-y-4">
+      <a
+        href="Adminsettings.html"
+        id="settings-btn"
+        class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        <i class="fa-solid fa-gear"></i>
+        <p class="">Settings</p>
+      </a>
+      <button
+        class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+      >
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <p class="">Logout</p>
+      </button>
+    </div>
+  </div>
+</section>
+
+<section id="main-content" class="h-screen w-full space-y-5 overflow-x-hidden">
+  <div class="flex items-center justify-between sticky top-0 z-10 border-b border-gray-200 bg-white py-4 px-5 lg:px-7">
+    <div class="relative w-full mx-auto container lg:container-none lg:mx-0 lg:w-auto">
+      <input
+        type="text"
+        placeholder="Search"
+        class="w-full py-2 rounded-md pl-10 pr-12 border border-gray-200 focus:outline-none placeholder:text-sm"
+      />
+      <i class="fa-solid fa-magnifying-glass text-sm absolute transform -translate-y-1/2 left-3 top-1/2 text-gray-400"></i>
+    </div>
+    <div class="hidden lg:flex items-center space-x-4">
+      <button class="bg-white rounded-md shadow py-2 px-4">
+        <i class="fa-regular fa-bell text-gray-400"></i>
+      </button>
+      <button class="flex items-center space-x-1 bg-white py-2 border border-gray-200 px-3 rounded-md">
+        <img src="images/img_avatar1.png" alt="" class="w-7 h-7 rounded-full" />
+        <p class="font-medium">dxrkfacee</p>
+      </button>
+    </div>
+  </div>
+
+  <div class="w-full flex flex-col px-5 lg:px-7">
+    <p class="font-medium">Good Morning, dxrkfacee!</p>
+    <p class="text-[13px] tracking-tight text-gray-400">
+      Here's what's happening with your store today.
+    </p>
+  </div>
+
+  <div class="w-full px-5 lg:px-7">
+    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div class="bg-white border border-gray-200 shadow-md rounded py-4 px-3.5">
+        <div class="flex justify-between h-full">
+          <div class="flex flex-col justify-between space-y-5">
+            <h2 class="text-[13px] tracking-tight text-[#878a99] font-medium uppercase whitespace-nowrap">
+              Total earnings
+            </h2>
+            <h1 class="text-[22px] text-[#495057] font-semibold">
+              $559.25k
+            </h1>
+            <a href="" class="text-xs underline text-gray-500">View net earnings</a>
+          </div>
+          <div class="flex flex-col justify-between items-center">
+            <p class="text-green-500 text-[14px] font-medium">+16.24 %</p>
+            <div class="w-12 h-12 bg-green-100 rounded flex justify-center items-center">
+              <i class="fa-solid fa-circle-dollar-to-slot text-green-500 text-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white border border-gray-200 shadow-md rounded py-4 px-3.5">
+        <div class="flex justify-between h-full">
+          <div class="flex flex-col justify-between space-y-5">
+            <h2 class="text-[13px] tracking-tight text-[#878a99] font-medium uppercase whitespace-nowrap">
+              Orders
+            </h2>
+            <h1 class="text-[22px] text-[#495057] font-semibold">36.894</h1>
+            <a href="" class="text-xs underline text-gray-500">View all orders</a>
+          </div>
+          <div class="flex flex-col justify-between items-center">
+            <p class="text-red-500 text-[14px] font-medium">-3.57 %</p>
+            <div class="w-12 h-12 bg-blue-100 rounded flex justify-center items-center">
+              <i class="fa-solid fa-bag-shopping text-blue-500 text-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white border border-gray-200 shadow-md rounded py-4 px-3.5">
+        <div class="flex justify-between h-full">
+          <div class="flex flex-col justify-between space-y-5">
+            <h2 class="text-[13px] tracking-tight text-[#878a99] font-medium uppercase whitespace-nowrap">
+              Customers
+            </h2>
+            <h1 class="text-[22px] text-[#495057] font-semibold">183.35M</h1>
+            <a href="" class="text-xs underline text-gray-500">See details</a>
+          </div>
+          <div class="flex flex-col justify-between items-center">
+            <p class="text-green-500 text-[14px] font-medium">+29.08 %</p>
+            <div class="w-12 h-12 bg-orange-100 rounded flex justify-center items-center">
+              <i class="fa-regular fa-circle-user text-yellow-500 text-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white border border-gray-200 shadow-md rounded py-4 px-3.5">
+        <div class="flex justify-between h-full">
+          <div class="flex flex-col justify-between space-y-5">
+            <h2 class="text-[13px] tracking-tight text-[#878a99] font-medium uppercase whitespace-nowrap">
+              My balance
+            </h1>
+            <h1 class="text-[22px] text-[#495057] font-semibold">$165.89k</h1>
+            <a href="" class="text-xs underline text-gray-500">Withdraw money</a>
+          </div>
+          <div class="flex flex-col justify-between items-center">
+            <p class="text-[#878a99] text-[14px] font-medium">+0.00 %</p>
+            <div class="w-12 h-12 bg-[#e2e5ed] rounded flex justify-center items-center">
+              <i class="fa-solid fa-wallet text-[#405189] text-md"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="w-full flex flex-col w-full px-5 py-4 lg:flex-row lg:space-x-5 lg:justify-between lg:px-7">
+      <div class="bg-white shadow-md rounded w-full border border-gray-200 lg:w-7/12">
+        <div class="w-full">
+          <div class="flex items-center justify-between px-2 py-4 bg-white">
+            <p class="font-medium text-[16px]">Revenue</p>
+            <button class="bg-blue-100 text-blue-500 text-xs rounded px-2 py-1.5 hover:transition hover:duration-300 hover:bg-blue-500 hover:text-white">
+              All
+            </button>
+          </div>
+          <div class="flex items-center bg-gray-100 justify-between divide-x border-y border-dashed">
+            <div class="flex flex-col items-center flex-1 py-3">
+              <h1 class="text-center font-medium text-[#495057]">7,585</h1>
+              <p class="text-[#878a99] text-[8px] md:text-xs">Orders</p>
+            </div>
+            <div class="flex flex-col items-center flex-1 py-3">
+              <h1 class="text-center font-medium text-[#495057]">$22.89k</h1>
+              <p class="text-[#878a99] text-[8px] md:text-xs">Earnings</p>
+            </div>
+            <div class="flex flex-col items-center flex-1 py-3">
+              <h1 class="text-center font-medium text-[#495057]">367</h1>
+              <p class="text-[#878a99] text-[8px] md:text-xs">Refunds</p>
+            </div>
+            <div class="flex flex-col items-center flex-1 py-3">
+              <h1 class="text-center font-medium text-[#495057] text-green-500">18.92%</h1>
+              <p class="text-[#878a99] text-[8px] md:text-xs">Conversation Ratio</p>
+            </div>
+          </div>
+        </div>
+        <div class="w-full relative h-[400px] px-2">
+          <canvas id="revenueChart" class="w-full"></canvas>
+        </div>
+      </div>
+      <div class="bg-white shadow-md rounded w-full border border-gray-200 lg:w-5/12">
+        <div class="flex justify-between items-center py-4 px-2 bg-white border-b">
+          <p class="font-medium text-[16px]">Sales by location</p>
+          <button class="px-2 bg-[#e2e5ed] py-1.5 text-blue-700 text-xs rounded hover:bg-[#405189] hover:text-white hover:transition hover:duration-300">
+            Export Report
+          </button>
+        </div>
+        <div class="flex flex-col justify-stretch">
+          <div id="map" class="w-full h-72 bg-gray-200"></div>
+          <div id="chartWrapper" class="relative">
+            <canvas id="salesChart"></canvas>
+            <div id="chartLabels" style="pointer-events: none" class="top-0 h-[100%] left-0 absolute w-[100%]"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col px-5 pb-5 lg:px-7 lg:flex-row lg:space-x-5 lg:justify-between">
+      <div class="bg-white shadow-md rounded w-full border border-gray-200 lg:w-4/12">
+        <div class="flex justify-between items-center border-b border-gray-200 bg-white px-3 py-4">
+          <h2 class="font-medium text-[16px]">Store Visits by Source</h2>
+          <p class="text-xs text-[#878a99]">Report</p>
+        </div>
+        <div class="relative px-20 py-2">
+          <canvas id="storeChart"></canvas>
+    <div class="flex justify-center mt-4" id="chartLegend"></div>
+        </div>
+      </div>
+      <div class="bg-white shadow-md rounded w-full border border-gray-200 lg:w-8/12">
+        <div class="bg-white flex items-center border-b border-gray-200 justify-between px-3 py-4">
+          <h2 class="font-medium text-[16px]">Recent Orders</h2>
+          <button class="bg-[#dff0fa] text-[#299cdb] text-xs rounded px-2 py-1.5 hover:transition hover:duration-300 hover:bg-[#299cdb] hover:text-white">Generate Report</button>
+        </div>
+        <div class="table-container">
+          <table class="min-w-full ">
+            <thead class="bg-gray-100">
+              <tr>
+                <th
+                  class="py-3 px-5 lg:px-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-tight whitespace-nowrap"
+                >
+                  Order ID
+                </th>
+                <th
+                  class="py-3 px-5 lg:px-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-tight whitespace-nowrap"
+                >
+                  Product
+                </th>
+                <th
+                  class="py-3 px-5 lg:px-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-tight whitespace-nowrap"
+                >
+                  Customer
+                </th>
+                <th
+                  class="py-3 px-5 lg:px-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-tight whitespace-nowrap"
+                >
+                  Status
+                </th>
+                <th
+                  class="py-3 px-5 lg:px-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-tight whitespace-nowrap"
+                >
+                  Total
+                </th>
+                <th
+                  class="py-3 px-5 lg:px-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-tight whitespace-nowrap"
+                >
+                  Date
+                </th>
+                <th
+                  class="py-3 px-5 lg:px-3 border-b-2 border-gray-300 text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-tight whitespace-nowrap"
+                ></th>
+              </tr>
+            </thead>
+            <tbody class="bg-white" id="table-body">
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+    <script>
+      document.getElementById("bar").addEventListener("click", function () {
+        let nav = document.getElementById("nav");
+
+        nav.classList.toggle("-translate-x-full");
+        nav.classList.toggle("translate-x-0");
+      });
+
+      const currentPage = window.location.pathname.split("/").pop();
+      const buttons = {
+        "Admindashboard.html": document.getElementById("home-btn"),
+        "adminproduct.html": document.getElementById("product-btn"),
+        "Adminorders.html": document.getElementById("orders-btn"),
+        "Admincustomers.html": document.getElementById("customers-btn"),
+      };
+
+      if (buttons[currentPage]) {
+        buttons[currentPage].classList.add("bg-blue-700", "text-white");
+      }
+
+      document.addEventListener("click", function (event) {
+        let nav = document.getElementById("nav");
+        let bar = document.getElementById("bar");
+
+        // Check if the click is outside the sidebar and bar button
+        if (
+          !nav.contains(event.target) &&
+          !bar.contains(event.target) &&
+          nav.classList.contains("translate-x-0")
+        ) {
+          nav.classList.add("-translate-x-full");
+          nav.classList.remove("translate-x-0");
+        }
+      });
+      // Revenue Chart
+      var ctxRevenue = document.getElementById("revenueChart").getContext("2d");
+      var revenueChart = new Chart(ctxRevenue, {
+        type: "bar", // Specify the chart type
+        data: {
+          labels: [
+            "Jan",
+            "Feb",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ],
+          datasets: [
+            {
+              label: "Orders",
+              data: [90, 100, 60, 100, 70, 80, 50, 20, 90, 40, 80, 30],
+              backgroundColor: "rgba(10, 179, 156, 0.9)",
+              borderColor: "rgba(0, 0, 0, 0)", // Ensure no border color is applied
+              borderWidth: 0,
+              barThickness: 20,
+            },
+            {
+              type: "line",
+              label: "Earnings",
+              data: [10, 30, 40, 30, 50, 20, 30, 50, 10, 20, 30, 50],
+              backgroundColor: "rgba(75, 192, 192, 0.2)",
+              borderColor: "rgba(75, 192, 192, 1)",
+              borderWidth: 2,
+              fill: true,
+              yAxisID: "y",
+              pointRadius: 0, // Adjust the point size for better visibility
+            },
+            {
+              type: "line",
+              label: "Refunds",
+              data: [20, 15, 10, 25, 15, 18, 8, 20, 28, 15, 25, 18],
+              backgroundColor: "rgba(255, 99, 132, 0.2)",
+              borderColor: "rgba(255, 99, 132, 1)",
+              borderWidth: 2,
+              borderDash: [5, 5],
+              yAxisID: "y",
+              pointRadius: 0, // Adjust the point size for better visibility
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              grid: {
+                display: true, // Show grid lines on x-axis
+                drawOnChartArea: true, // Draw grid lines on the entire chart area
+                drawTicks: true, // Draw ticks for the grid lines
+                color: "rgba(0, 0, 0, 0.05)", // Color of the grid lines
+                offset: false,
+                borderDash: [5, 5], // Add dash style to grid lines
+              },
+              ticks: {
+                align: "start", // Align ticks with the start of the bars
+                maxRotation: 0, // Prevent rotation of x-axis labels
+                minRotation: 0, // Prevent rotation of x-axis labels
+                font: {
+                  size: 12, // Increase the font size for x-axis labels
+                  weight: "bold", // Make the font bold for better readability
+                },
+              },
+              border: {
+                display: false, // Disable border line on x-axis
+              },
+            },
+            y: {
+              grid: {
+                display: false, // Disable grid lines on y-axis
+              },
+              ticks: {
+                stepSize: 30, // Set the step size between tick marks
+                callback: function (value) {
+                  return value.toFixed(2); // Format y-axis labels with two decimal places
+                },
+                font: {
+                  size: 12, // Increase the font size for y-axis labels
+                  weight: "bold", // Make the font bold for better readability
+                },
+              },
+              min: 0, // Set the minimum value for the y-axis
+              max: 120, // Set the maximum value for the y-axis
+              border: {
+                display: false, // Disable border line on y-axis
+              },
+            },
+          },
+          plugins: {
+            tooltip: {
+              mode: "index",
+              callbacks: {
+                label: function (tooltipItem) {
+                  return (
+                    tooltipItem.dataset.label +
+                    ": " +
+                    tooltipItem.raw.toFixed(2)
+                  );
+                },
+              },
+              titleFont: {
+                size: 14, // Increase the font size for the tooltip title
+                weight: "bold", // Make the font bold for better readability
+              },
+              bodyFont: {
+                size: 12, // Increase the font size for the tooltip body
+                weight: "bold", // Make the font bold for better readability
+              },
+            },
+            legend: {
+              display: true,
+              position: "bottom",
+              labels: {
+                usePointStyle: true, // Use point style for legend labels
+                pointStyle: "circle", // Change the point style to circle
+                font: {
+                  size: 12, // Adjust the font size for clarity
+                  weight: "bold", // Make the font bold for better readability
+                },
+                boxWidth: 10, // Adjust the box width
+                boxHeight: 10, // Adjust the box height
+                padding: 20, // Add some padding between the legend items
+              },
+            },
+          },
+        },
+      });
+
+      // Sales by Locations Chart
+      const locations = [
+  { name: "Canada", sales: 75 },
+  { name: "Greenland", sales: 47 },
+  { name: "Russia", sales: 82 },
+];
+
+// Chart.js horizontal bar chart
+const ctxSales = document.getElementById("salesChart").getContext("2d");
+const salesChart = new Chart(ctxSales, {
+  type: "bar",
+  data: {
+    labels: locations.map((location) => location.name),
+    datasets: [
+      {
+        label: "Sales",
+        data: locations.map((location) => location.sales),
+        backgroundColor: locations.map(() => "rgba(64, 81, 137, 1)"),
+        borderWidth: 0,
+        barThickness: 12,
+        borderRadius: 10,
+        borderSkipped: false,
+      },
+    ],
+  },
+  options: {
+    indexAxis: "y",
+    scales: {
+      x: {
+        beginAtZero: true,
+        grid: {
+          display: false,
+        },
+        ticks: {
+          display: false,
+        },
+        border: {
+          display: false,
+        },
+      },
+      y: {
+        grid: {
+          display: false,
+        },
+        ticks: {
+          display: false,
+        },
+        border: {
+          display: false,
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        enabled: true,
+      },
+    },
+  },
+  plugins: [
+    {
+      id: "customText",
+      beforeDraw: (chart) => {
+        const labelsContainer = document.getElementById("chartLabels");
+        labelsContainer.innerHTML = ""; // Clear previous labels
+        chart.data.datasets.forEach((dataset, i) => {
+          const meta = chart.getDatasetMeta(i);
+          meta.data.forEach((bar, index) => {
+            const label = chart.data.labels[index];
+            const sales = locations[index].sales;
+
+            const barY = bar.getCenterPoint().y;
+
+            // Create a div for each label
+            const labelDiv = document.createElement("div");
+            labelDiv.style.position = "absolute";
+            labelDiv.style.top = `${barY - 20}px`;
+            labelDiv.style.left = "10px";
+            labelDiv.style.width = "calc(100% - 20px)";
+            labelDiv.style.display = "flex";
+            labelDiv.style.justifyContent = "space-between";
+            
+
+            // Create span for name
+            const nameSpan = document.createElement("span");
+            nameSpan.textContent = label;
+            nameSpan.style.color = "rgba(0, 0, 0, 0.7)";
+            nameSpan.style.font = "12px Arial";
+
+            // Create span for percentage (same as sales value)
+            const percentageSpan = document.createElement("span");
+            percentageSpan.textContent = `${sales}%`;
+            percentageSpan.style.color = "rgba(0, 0, 0, 1)";
+            percentageSpan.style.font = "12px Arial";
+
+            // Append spans to the label div
+            labelDiv.appendChild(nameSpan);
+            labelDiv.appendChild(percentageSpan);
+
+            // Append label div to the container
+            labelsContainer.appendChild(labelDiv);
+          });
+        });
+      },
+    },
+  ],
+});
+
+// Mapbox map integration
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiZG9sbGFyaHVudGVyIiwiYSI6ImNseTdzN3o1NTA5YjkybXNkZnViZHY4MW0ifQ.xX5dKFHBJ4oTdvh6rgeLsA';
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [0, 20],
+    zoom: 0.5
+  });
+
+  const mapLocations = [
+    { lng: -106.3468, lat: 56.1304, name: 'Canada', sales: 75 },
+    { lng: -42.6043, lat: 71.7069, name: 'Greenland', sales: 47 },
+    { lng: 105.3188, lat: 61.5240, name: 'Russia', sales: 82 },
+    { lng: 35.2332, lat: 31.9466, name: 'Palestine', sales: 60 }
+  ];
+
+  mapLocations.forEach(location => {
+    const markerContainer = document.createElement('div');
+    markerContainer.className = 'mapboxgl-marker';
+
+    const dotMarker = document.createElement('div');
+    dotMarker.className = 'dot-marker';
+
+    const label = document.createElement('div');
+    label.className = 'dot-label';
+    label.innerText = `${location.name} (Sales: ${location.sales})`;
+
+    markerContainer.appendChild(dotMarker);
+    markerContainer.appendChild(label);
+
+    new mapboxgl.Marker(markerContainer)
+      .setLngLat([location.lng, location.lat])
+      .addTo(map);
+  });
+
+//order
+    const orders = [
+      { id: '#vz2112', customer: 'Alex Smith', product: 'Laptop', status: 'Paid', total: '$1000', date: '2024-07-01' },
+      { id: '#vz2113', customer: 'Bob Brown', product: 'Phone', status: 'Pending', total: '$500', date: '2024-07-02' },
+      { id: '#vz2114', customer: 'Charlie Hudda', product: 'Tablet', status: 'Paid', total: '$300', date: '2024-07-03' },
+      { id: '#vz2115', customer: 'David Mark', product: 'Monitor', status: 'Cancelled', total: '$200', date: '2024-07-04' },
+      { id: '#vz2116', customer: 'Eve Bowen', product: 'Keyboard', status: 'Pending', total: '$100', date: '2024-07-05' }
+    ];
+
+    const tableBody = document.getElementById('table-body');
+
+    orders.forEach(order => {
+      const row = document.createElement('tr');
+
+      Object.values(order).forEach(text => {
+        const cell = document.createElement('td');
+        cell.className = 'py-3 px-5 lg:px-3 text-left text-[13px] leading-4 font-medium text-gray-600 whitespace-nowrap';
+        cell.textContent = text;
+        row.appendChild(cell);
+      });
+
+      tableBody.appendChild(row);
+    });
+
+    const data = {
+      labels: ['Direct', 'Social', 'Email', 'Others', 'Referrals'],
+      datasets: [{
+        data: [25.6, 32.0, 23.8, 9.9, 8.7],
+        backgroundColor: ['#4D5DCB', '#22A685', '#FFBE53', '#FF6B6B', '#4DCBE2'],
+      }]
+    };
+
+    const config = {
+      type: 'doughnut',
+      data: data,
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: function(tooltipItem) {
+                return `${tooltipItem.label}: ${tooltipItem.raw}%`;
+              }
+            }
+          }
+        }
+      }
+    };
+
+    const storeChart = new Chart(
+      document.getElementById('storeChart'),
+      config
+    );
+
+    // Generate the legend manually
+    const legendContainer = document.getElementById('chartLegend');
+    data.labels.forEach((label, index) => {
+      const legendItem = document.createElement('div');
+      legendItem.className = 'flex items-center mx-2';
+      
+      const colorBox = document.createElement('span');
+      colorBox.className = 'legend-box';
+      colorBox.style.backgroundColor = data.datasets[0].backgroundColor[index];
+      
+      const labelText = document.createElement('span');
+      labelText.className = 'text-[10px] text-gray-700 md:text-xs';
+      labelText.textContent = label;
+
+      legendItem.appendChild(colorBox);
+      legendItem.appendChild(labelText);
+      legendContainer.appendChild(legendItem);
+    });
+
+    </script>
+  </body>
+</html>

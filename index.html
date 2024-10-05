@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/8f2d34ce9f.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="tailwind/tailwind.js"></script>
+    <style>
+      body{
+      font-family: "Montserrat", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 500;
+      font-style: normal;
+    }
+    </style>
+  </head>
+  <body class="">
+
+    <section class="flex justify-center">
+        <div class="hidden lg:flex lg:h-screen lg:rounded-tr-2xl lg:w-1/2 flex flex-col justify-center items-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-blue-900 opacity-75"></div>
+            <div class="relative text-center text-white p-10 space-y-5 z-10">
+                <h2 class="text-4xl font-bold">Welcome to Our Store</h2>
+                <p class="text-lg">
+                    Join us today and enjoy an exceptional shopping experience. Sign up now to access exclusive deals, new arrivals, and personalized recommendations just for you.
+                </p>
+                <p class="text-lg">
+                    Become a member of our community and start enjoying the benefits of a more tailored shopping journey.
+                </p>
+            </div>
+        </div>
+
+      </div>
+
+      <div
+        class="h-screen flex justify-center items-center py-5 px-10 w-full lg:w-1/2 lg:px-24 xl:px-32"
+      >
+        <div class="container mx-auto space-y-7">
+          <div class="flex justify-center">
+            <img
+              src="images/img_avatar1.png"
+              alt="avatar"
+              class="w-20 h-20 rounded-full opacity-90"
+            />
+          </div>
+          <h1 class="text-black font-bold text-3xl text-center">
+            Create Account
+          </h1>
+          <form action="" class="space-y-5">
+            <div class="relative">
+              <input
+                type="text"
+                class="border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 py-3 px-7 rounded-md w-full"
+                placeholder="Username"
+                id="username"
+              />
+              <i
+                class="fa-regular fa-user absolute text-gray-500 right-3 top-1/2 transform -translate-y-1/2"
+              ></i>
+            </div>
+            <div class="relative">
+              <input
+                type="number"
+                class="border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 py-3 px-7 rounded-md w-full"
+                placeholder="Phone number"
+                id="phonenumber"
+              />
+              <i
+                class="fa-solid fa-phone absolute text-gray-500 right-3 top-1/2 transform -translate-y-1/2"
+              ></i>
+            </div>
+            <div class="relative">
+              <input
+                type="email"
+                class="border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 py-3 px-7 rounded-md w-full"
+                placeholder="Email"
+                id="email"
+              />
+              <i
+                class="fa-regular fa-envelope absolute text-gray-500 right-3 top-1/2 transform -translate-y-1/2"
+              ></i>
+            </div>
+            <div class="relative">
+              <input
+                type="password"
+                class="border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 py-3 px-7 rounded-md w-full"
+                placeholder="Password"
+                id="password"
+              />
+              <i
+                class="fa-solid fa-lock text-gray-500 absolute right-3 top-1/2 transform -translate-y-1/2"
+              ></i>
+            </div>
+            <div class="relative w-full">
+              <button
+                type="submit"
+                class="bg-blue-800 w-full text-white text-center py-3 rounded-md px-7 flex items-center justify-center hover:bg-blue-900"
+              >
+                <span class="flex items-center">
+                  Sign Up
+                  <i class="fa-solid fa-arrow-right text-white ml-2"></i>
+                </span>
+              </button>
+            </div>
+            <p class="text-center font-medium">
+              Already have an account?
+              <a href="Login.html" class="text-red-500 underline">sign in</a>
+            </p>
+          </form>
+
+        </div>
+    </section>
+</body>
+</html>

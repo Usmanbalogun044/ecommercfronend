@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing page</title>
+    <script src="tailwind/tailwind.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/8f2d34ce9f.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .blur-overlay {
+        background: rgba(0, 0, 0, 0.5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        display: none;
+      }
+    </style>
+  </head>
+  <body class="m-0">
+    <!-- Header -->
+    <div class="top-0 sticky z-10">
+      <nav class="bg-[#405189] shadow py-3 px-4 leading-5 lg:py-4">
+        <div class="lg:container lg:mx-auto flex justify-between items-center">
+          <div class="flex items-center space-x-5">
+            <button id="menuButton" class="lg:hidden focus:outline-none">
+              <i class="fa-solid fa-bars text-white text-md"></i>
+            </button>
+            <h1 class="font-semibold text-white lg:text-2xl">MatthiOla</h1>
+          </div>
+          <div class="hidden lg:flex lg:items-center lg:space-x-5">
+            <a
+              href="#home"
+              class="text-[14px] font-medium text-white hover:text-[#6A8FDB]"
+              >Home</a
+            >
+            <a
+              href="#our-product"
+              class="text-[14px] font-medium text-white hover:text-[#6A8FDB]"
+              >Our Product</a
+            >
+            <a
+              href="#features"
+              class="text-[14px] font-medium text-white hover:text-[#6A8FDB]"
+              >Features</a
+            >
+            <a
+              href="#about-us"
+              class="text-[14px] font-medium text-white hover:text-[#6A8FDB]"
+              >About Us</a
+            >
+          </div>
+          <button
+            class="py-1.5 lg:py-2 px-5 lg:px-7 rounded-md space-x-2 text-white bg-[#405189] border font-medium text-[14px] flex items-center justify-center"
+          >
+            <span>Sign In</span>
+            <i class="fa-solid fa-arrow-right-to-bracket text-base"></i>
+          </button>
+        </div>
+      </nav>
+      <div
+        id="nav"
+        class="hidden bg-[#405189] h-screen w-3/4 top-0 left-0 z-20 fixed lg:hidden"
+      >
+        <div class="flex items-center space-x-5 py-5 px-3">
+          <button id="cancel" class="">
+            <i class="fa-solid fa-xmark text-white text-md"></i>
+          </button>
+          <a href="" class="font-semibold text-white">MatthiOla</a>
+        </div>
+        <div class="flex flex-col p-4 px-7 space-y-7">
+          <a
+            href="#home"
+            class="text-[14px] font-medium text-white hover:text-[#6A8FDB]"
+            >Home</a
+          >
+          <a
+            href="#our-product"
+            class="text-[14px] font-medium text-white hover:text-[#6A8FDB]"
+            >Our Product</a
+          >
+          <a
+            href="#features"
+            class="text-[14px] font-medium text-white hover:text-[#6A8FDB]"
+            >Features</a
+          >
+          <a
+            href="#about-us"
+            class="text-[14px] font-medium text-white hover:text-[#6A8FDB]"
+            >About Us</a
+          >
+        </div>
+      </div>
+
+      <div id="overlay" class="blur-overlay"></div>
+    </div>
+
+    <!-- Hero -->
+    <section
+      id="home"
+      class="bg-white h-screen flex items-center justify-center"
+    >
+      <div
+        class="container mx-auto flex flex-col lg:flex-row items-center justify-center lg:justify-between px-6 lg:px-12"
+      >
+        <div class="text-center lg:text-left lg:w-1/2">
+          <h1 class="text-5xl font-bold text-green-700">Pure Groundnut Oil</h1>
+          <p class="mt-4 text-lg text-gray-700">
+            Experience the goodness of natural groundnut oil.
+          </p>
+          <p class="mt-2 text-gray-500">
+            Our groundnut oil is 100% pure and natural, perfect for all your
+            cooking needs. Enjoy the rich flavor and health benefits with every
+            drop.
+          </p>
+          <div
+            class="mt-6 flex flex-col lg:flex-row items-center lg:items-start space-y-3 lg:space-y-0 lg:space-x-4"
+          >
+            <a
+              href="#"
+              class="bg-green-700 text-white px-6 py-3 rounded-lg hover:bg-green-800"
+              >Buy Now</a
+            >
+            <a
+              href="#"
+              class="bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600"
+              >Learn More</a
+            >
+          </div>
+        </div>
+        <div class="mt-6 lg:mt-0 lg:w-1/2 lg:flex lg:justify-center">
+          <img
+            src="images/oil.png"
+            alt="Groundnut Oil"
+            class="w-full max-w-md mx-auto lg:mx-0"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="our-product" class="bg-white py-24">
+      <div class="container mx-auto px-6 flex flex-col">
+        <h1 class="text-[36px] text-slate-800 text-center font-medium">
+          Our Products
+        </h1>
+        <div
+          class="mt-12 grid gap-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-4"
+        >
+          <div
+            class="bg-gradient-to-b from-slate-100 to-white p-5 rounded-md overflow-hidden flex flex-col cursor-pointer"
+          >
+            <img src="images/oil.png" alt="" class="mx-auto h-52" />
+            <div class="">
+              <!-- Product details like title, price, etc. can go here -->
+              <h1 class="font-semibold text-lg">MatthiOla Oil 1400ml Bottle</h1>
+              <div class="flex items-center justify-between pt-3">
+                <p class="text-[16px] font-medium text-gray-600">$299.99</p>
+                <button
+                  class="text-white text-[12px] py-[8px] px-[8px] text-center bg-gradient-to-r from-blue-500 to-blue-700 shadow-lg rounded-md transition-all duration-300 hover:shadow-xl hover:from-blue-600 hover:to-blue-800"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-gradient-to-b from-slate-100 to-white p-5 rounded-md overflow-hidden flex flex-col cursor-pointer"
+          >
+            <img src="images/oil.png" alt="" class="mx-auto h-52" />
+            <div class="">
+              <!-- Product details like title, price, etc. can go here -->
+              <h1 class="font-semibold text-lg">MatthiOla Oil 1400ml Bottle</h1>
+              <div class="flex items-center justify-between pt-3">
+                <p class="text-[16px] font-medium text-gray-600">$299.99</p>
+                <button
+                  class="text-white text-[12px] py-[8px] px-[8px] text-center bg-gradient-to-r from-blue-500 to-blue-700 shadow-lg rounded-md transition-all duration-300 hover:shadow-xl hover:from-blue-600 hover:to-blue-800"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-gradient-to-b from-slate-100 to-white p-5 rounded-md overflow-hidden flex flex-col cursor-pointer"
+          >
+            <img src="images/oil.png" alt="" class="mx-auto h-52" />
+            <div class="">
+              <!-- Product details like title, price, etc. can go here -->
+              <h1 class="font-semibold text-lg">MatthiOla Oil 1400ml Bottle</h1>
+              <div class="flex items-center justify-between pt-3">
+                <p class="text-[16px] font-medium text-gray-600">$299.99</p>
+                <button
+                  class="text-white text-[12px] py-[8px] px-[8px] text-center bg-gradient-to-r from-blue-500 to-blue-700 shadow-lg rounded-md transition-all duration-300 hover:shadow-xl hover:from-blue-600 hover:to-blue-800"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-gradient-to-b from-slate-100 to-white p-5 rounded-md overflow-hidden flex flex-col cursor-pointer"
+          >
+            <img src="images/oil.png" alt="" class="mx-auto h-52" />
+            <div class="">
+              <!-- Product details like title, price, etc. can go here -->
+              <h1 class="font-semibold text-lg">MatthiOla Oil 1400ml Bottle</h1>
+              <div class="flex items-center justify-between pt-3">
+                <p class="text-[16px] font-medium text-gray-600">$299.99</p>
+                <button
+                  class="text-white text-[12px] py-[8px] px-[8px] text-center bg-gradient-to-r from-blue-500 to-blue-700 shadow-lg rounded-md transition-all duration-300 hover:shadow-xl hover:from-blue-600 hover:to-blue-800"
+                >
+                  Add to Cart
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Repeat similar structure for other product items -->
+        </div>
+      </div>
+    </section>
+    <section id="features" class="h-screen bg-white py-24"></section>
+    <section id="about-us" class="h-screen bg-black"></section>
+
+    <footer class="bg-[#405189] text-white py-10">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Company Info -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">About MatthiOla</h3>
+            <p class="text-sm">
+              Malthilola Nigeria Limited is an indigenous palm oil producing
+              company, focused on providing authentic, pure and high-quality
+              palm oil to its customers. Founded on a passion for excellence,
+              the company is committed to delivering only the best palm oil,
+              produced sustainably and with respect to the environment.
+            </p>
+          </div>
+          <!-- Customer Service -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Customer Service</h3>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Help Center</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Contact Us</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Returns & Refunds</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Shipping & Delivery</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Quick Links -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+            <ul class="space-y-2 text-sm">
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Careers</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Privacy Policy</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-gray-300 hover:underline"
+                  >Terms & Conditions</a
+                >
+              </li>
+            </ul>
+          </div>
+          <!-- Social Media -->
+          <div>
+            <h3 class="text-lg font-semibold mb-4">Follow Us</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="hover:text-gray-300 hover:underline"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a href="#" class="hover:text-gray-300 hover:underline"
+                ><i class="fab fa-twitter"></i
+              ></a>
+              <a href="#" class="hover:text-gray-300 hover:underline"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a href="#" class="hover:text-gray-300 hover:underline"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 border-t border-gray-500 pt-4 text-center">
+          <p class="text-sm">&copy; 2024 MatthiOla. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelectorAll("nav a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          const targetId = this.getAttribute("href").substring(1);
+          const targetElement = document.getElementById(targetId);
+
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+
+      const menuButton = document.getElementById("menuButton");
+      const nav = document.getElementById("nav");
+      const overlay = document.getElementById("overlay");
+      const cancel = document.getElementById("cancel");
+
+      menuButton.addEventListener("click", () => {
+        nav.classList.toggle("hidden");
+        overlay.style.display =
+          overlay.style.display === "none" || overlay.style.display === ""
+            ? "block"
+            : "none";
+      });
+
+      overlay.addEventListener("click", () => {
+        nav.classList.add("hidden");
+        overlay.style.display = "none";
+      });
+
+      cancel.addEventListener("click", () => {
+        nav.classList.add("hidden");
+        overlay.style.display = "none";
+      });
+
+      // Close sidebar when a link is clicked and then navigate
+      document.querySelectorAll("#nav a").forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+          nav.classList.add("hidden");
+          overlay.style.display = "none";
+          const targetId = link.getAttribute("href").substring(1);
+          const targetElement = document.getElementById(targetId);
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+    </script>
+  </body>
+</html>

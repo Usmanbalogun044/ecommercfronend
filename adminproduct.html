@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admindash</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/8f2d34ce9f.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="tailwind/tailwind.js"></script>
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+      }
+      .active {
+        background-color: #1d4ed8;
+        color: white;
+      }
+
+      .table-container {
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
+      }
+      .inline-block {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .inline-block img {
+        width: 3rem;
+        height: 3rem;
+        margin-right: 0.5rem;
+      }
+    </style>
+  </head>
+  <body class="">
+    <div class="lg:flex lg:space-x-64">
+      <section class="sticky top-0 z-10">
+        <div
+          class="block lg:hidden py-4 px-6 bg-white z-10 relative border-b border-gray-200"
+        >
+          <div class="flex justify-between items-center">
+            <button id="bar">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="flex items-center space-x-4">
+              <button id="search-icon">
+                <i class="fa-regular fa-bell"></i>
+              </button>
+              <button>
+                <img
+                  src="images/img_avatar1.png"
+                  alt=""
+                  class="w-7 h-7 rounded-full"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          id="nav"
+          class="fixed top-0 left-0 transform -translate-x-full lg:translate-x-0 flex flex-col justify-between space-y-7 h-screen bg-white w-64 px-4 py-10 transition-transform duration-300 ease-in-out z-30 border-r border-gray-200"
+        >
+          <div class="space-y-10">
+            <div class="text-center w-full">
+              <p
+                class="text-blue-700 text-2xl py-1.5 font-semibold"
+              >
+                MatthiOla
+              </p>
+            </div>
+            <div class="w-full space-y-6">
+              <a
+                href="Admindashboard.html"
+                id="home-btn"
+                class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                <i class="fa-solid fa-house"></i>
+                <p class="">Dashboard</p>
+              </a>
+              <a
+                href="adminproduct.html"
+                id="product-btn"
+                class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                <i class="fa-solid fa-box"></i>
+                <p class="">Product</p>
+              </a>
+              <a
+                href="Admincustomers.html"
+                id="customers-btn"
+                class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                <i class="fa-solid fa-user-group"></i>
+                <p class="">Customers</p>
+              </a>
+              <a
+                href="Adminorders.html"
+                id="orders-btn"
+                class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                <p class="">Orders</p>
+              </a>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <a
+              href="Adminsettings.html"
+              id="settings-btn"
+              class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              <i class="fa-solid fa-gear"></i>
+              <p class="">Settings</p>
+            </a>
+            <button
+              class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <p class="">Logout</p>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="h-screen w-full space-y-3">
+        <div
+          class="flex items-center justify-between border-b border-gray-200 sticky top-0 py-4 px-5 lg:px-7"
+        >
+          <div
+            class="relative w-full mx-auto container lg:container-none lg:mx-0 lg:w-auto"
+          >
+            <input
+              type="text"
+              placeholder="Search"
+              class="w-full py-2 rounded-md pl-10 pr-12 border border-gray-200 focus:outline-none placeholder:text-sm"
+            />
+            <i
+              class="fa-solid fa-magnifying-glass text-sm absolute transform -translate-y-1/2 left-3 top-1/2 text-gray-400"
+            ></i>
+          </div>
+          <div class="hidden lg:flex items-center space-x-4">
+            <button class="bg-white rounded-md shadow py-2 px-4">
+              <i class="fa-regular fa-bell text-gray-400"></i>
+            </button>
+            <button
+              class="flex items-center space-x-1 bg-white py-2 border border-gray-200 px-3 rounded-md"
+            >
+              <img
+                src="images/img_avatar1.png"
+                alt=""
+                class="w-7 h-7 rounded-full"
+              />
+              <p class="font-medium">dxrkfacee</p>
+            </button>
+          </div>
+        </div>
+        <div class="bg-white py-2 rounded-md shadow px-5 lg:px-7">
+          <div
+            class="flex justify-between items-center bg-white shadow rounded-md px-2 py-1.5 mb-3 lg:px-4"
+          >
+            <h1 class="font-bold text-xl">Products</h1>
+            <a
+              href="Addproduct.html"
+              class="bg-blue-700 text-white py-1.5 px-4 rounded"
+            >
+              Add Product
+            </a>
+          </div>
+
+          <div class="table-container">
+            <table class="min-w-full text-left">
+              <thead class="">
+                <tr>
+                  <th
+                    class="py-4 px-6 border-b-2 border-gray-300 text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider"
+                  >
+                    Product
+                  </th>
+                  <th
+                    class="py-4 px-6 border-b-2 border-gray-300 text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider"
+                  >
+                    Price
+                  </th>
+                  <th
+                    class="py-4 px-6 border-b-2 border-gray-300 text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider"
+                  >
+                    Stock
+                  </th>
+                  <th
+                    class="py-4 px-6 border-b-2 border-gray-300 text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider"
+                  ></th>
+                </tr>
+              </thead>
+              <tbody id="productTable" class="text-gray-700"></tbody>
+            </table>
+          </div>
+        </div>
+        <!-- Pagination-->
+
+        <div
+          class="flex justify-center items-center justify-between mt-4 space-x-2 px-5 lg:px-7"
+        >
+          <button
+            id="prevPageBtn"
+            class="py-1 px-3 rounded-md hover:bg-[#eee] border border-gray-200 transition"
+          >
+            Previous
+          </button>
+          <div id="paginationContainer" class="flex space-x-2"></div>
+          <button
+            id="nextPageBtn"
+            class="py-1 px-3 rounded-md hover:bg-[#eee] border border-gray-200 transition"
+          >
+            Next
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      document.getElementById("bar").addEventListener("click", function () {
+        let nav = document.getElementById("nav");
+        nav.classList.toggle("-translate-x-full");
+        nav.classList.toggle("translate-x-0");
+      });
+
+      const currentPaget = window.location.pathname.split("/").pop();
+      const buttons = {
+        "Admindashboard.html": document.getElementById("home-btn"),
+        "adminproduct.html": document.getElementById("product-btn"),
+        "Adminorders.html": document.getElementById("orders-btn"),
+        "Admincustomers.html": document.getElementById("customers-btn"),
+      };
+
+      if (buttons[currentPaget]) {
+        buttons[currentPaget].classList.add("bg-blue-700", "text-white");
+      }
+
+      document.addEventListener("click", function (event) {
+        let nav = document.getElementById("nav");
+        let bar = document.getElementById("bar");
+
+        // Check if the click is outside the sidebar and bar button
+        if (
+          !nav.contains(event.target) &&
+          !bar.contains(event.target) &&
+          nav.classList.contains("translate-x-0")
+        ) {
+          nav.classList.add("-translate-x-full");
+          nav.classList.remove("translate-x-0");
+        }
+      });
+
+      const productList = [
+        {
+          name: "Back Watch",
+          image: "images/Jordan.jpg",
+          price: "$230",
+          stock: 400,
+        },
+        {
+          name: "Sneakers Shoes",
+          image: "images/Jordan.jpg",
+          price: "$230",
+          stock: 400,
+        },
+        {
+          name: "Hand Pocket",
+          image: "images/Jordan.jpg",
+          price: "$230",
+          stock: 400,
+        },
+        {
+          name: "Smart Watch",
+          image: "images/Jordan.jpg",
+          price: "$230",
+          stock: 400,
+        },
+        {
+          name: "Plain Black Cap",
+          image: "images/Jordan.jpg",
+          price: "$230",
+          stock: 400,
+        },
+        {
+          name: "Hand Baig",
+          image: "images/Jordan.jpg",
+          price: "$230",
+          stock: 400,
+        },
+        {
+          name: "Hand Baig Green",
+          image: "images/Jordan.jpg",
+          price: "$230",
+          stock: 400,
+        },
+        {
+          name: "Leather Wallet",
+          image: "images/Jordan.jpg",
+          price: "$230",
+          stock: 400,
+        },
+        { name: "Ring", image: "images/Jordan.jpg", price: "$230", stock: 400 },
+      ];
+
+      const itemsPerPage = 8;
+      let currentPage = 1;
+
+      function renderTableRows() {
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const slicedProducts = productList.slice(startIndex, endIndex);
+
+        const tableBody = document.getElementById("productTable");
+        tableBody.innerHTML = "";
+
+        slicedProducts.forEach((product) => {
+          const row = `
+          <tr class="hover:bg-gray-100">
+            <td class="py-4 px-6  text-xs leading-4 font-medium text-gray-600 tracking-wider whitespace-nowrap"><img src="${product.image}" class="w-7 h-7 rounded-md inline-block mr-2" /><p class="inline-block">${product.name}</p></td>
+            <td class="py-4 px-6  text-xs leading-4 font-medium text-gray-600 tracking-wider">${product.price}</td>
+            <td class="py-4 px-6  text-xs leading-4 font-medium text-gray-600 tracking-wider">${product.stock}</td>
+            <td class="py-4 px-6  text-xs leading-4 font-medium text-gray-600 tracking-wider flex space-x-2">
+              <button class="bg-blue-500 text-white px-4 py-2 rounded">Update</button>
+              <button class="bg-red-500 text-white px-4 py-2 rounded">Delete</button>
+            </td>
+          </tr>
+        `;
+          tableBody.innerHTML += row;
+        });
+
+        updateActivePage();
+      }
+
+      function updateActivePage() {
+        const pageButtons = document.querySelectorAll(".pagination-btn");
+        pageButtons.forEach((btn) =>
+          btn.classList.remove("bg-blue-500", "text-white")
+        );
+        const activeBtn = document.getElementById(`page${currentPage}Btn`);
+        if (activeBtn) activeBtn.classList.add("bg-blue-500", "text-white");
+      }
+
+      function renderPageButtons(totalPages) {
+        const paginationContainer = document.getElementById(
+          "paginationContainer"
+        );
+        paginationContainer.innerHTML = "";
+
+        for (let i = 1; i <= totalPages; i++) {
+          const pageButton = document.createElement("button");
+          pageButton.id = `page${i}Btn`;
+          pageButton.classList.add(
+            "pagination-btn",
+            "py-1",
+            "px-3",
+            "rounded",
+            "hover:bg-[#eee]",
+            "border",
+            "border-gray-200",
+            "transition"
+          );
+          pageButton.textContent = i;
+          pageButton.addEventListener("click", () => {
+            currentPage = i;
+            renderTableRows();
+          });
+          paginationContainer.appendChild(pageButton);
+        }
+      }
+
+      function initializePagination() {
+        const totalPages = Math.ceil(productList.length / itemsPerPage);
+        renderPageButtons(totalPages);
+        renderTableRows();
+
+        document.getElementById("prevPageBtn").addEventListener("click", () => {
+          if (currentPage > 1) {
+            currentPage--;
+            renderTableRows();
+          }
+        });
+
+        document.getElementById("nextPageBtn").addEventListener("click", () => {
+          if (currentPage < totalPages) {
+            currentPage++;
+            renderTableRows();
+          }
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", initializePagination);
+    </script>
+  </body>
+</html>

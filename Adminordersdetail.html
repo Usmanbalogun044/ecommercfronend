@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title src="images/oil.png" >AdminOrderdetails
+      
+    </title>
+    <img  alt="">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/8f2d34ce9f.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="tailwind/tailwind.js"></script>
+    <style>
+      body {
+        font-family: "Montserrat", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+      }
+      .active {
+        background-color: #1d4ed8;
+        color: white;
+      }
+      .table-container {
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
+      }
+    </style>
+  </head>
+  <body class="">
+    <div class="lg:flex lg:space-x-64">
+      <section class="sticky top-0 z-10">
+        <div
+          class="block lg:hidden py-4 px-6 bg-white z-10 relative border-b border-gray-200"
+        >
+          <div class="flex justify-between items-center">
+            <button id="bar">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="flex items-center space-x-4">
+              <button id="search-icon">
+                <i class="fa-regular fa-bell"></i>
+              </button>
+              <button>
+                <img
+                  src="images/img_avatar1.png"
+                  alt=""
+                  class="w-7 h-7 rounded-full"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          id="nav"
+          class="fixed top-0 left-0 transform -translate-x-full lg:translate-x-0 flex flex-col justify-between space-y-7 h-screen bg-white w-64 px-4 py-10 transition-transform duration-300 ease-in-out z-30 border-r border-gray-200"
+        >
+          <div class="space-y-10">
+            <div class="text-center w-full">
+              <p class="text-blue-700 text-2xl py-1.5 font-semibold">
+                MatthiOla
+              </p>
+            </div>
+            <div class="w-full space-y-6">
+              <a
+                href="Admindashboard.html"
+                id="home-btn"
+                class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                <i class="fa-solid fa-house"></i>
+                <p class="">Dashboard</p>
+              </a>
+              <a
+                href="adminproduct.html"
+                id="product-btn"
+                class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                <i class="fa-solid fa-box"></i>
+                <p class="">Product</p>
+              </a>
+              <a
+                href="Admincustomers.html"
+                id="customers-btn"
+                class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                <i class="fa-solid fa-user-group"></i>
+                <p class="">Customers</p>
+              </a>
+              <a
+                href="Adminorders.html"
+                id="orders-btn"
+                class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                <p class="">Orders</p>
+              </a>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <a
+              href="Adminsettings.html"
+              id="settings-btn"
+              class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              <i class="fa-solid fa-gear"></i>
+              <p class="">Settings</p>
+            </a>
+            <button
+              class="flex items-center font-medium space-x-3 w-full rounded-md py-2 px-5 hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+            >
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
+              <p class="">Logout</p>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="" class="h-screen w-full space-y-4">
+        <div
+          class="flex items-center justify-between sticky top-0 bg-white border-b border-gray-200 py-4 px-5 lg:px-7"
+        >
+          <div
+            class="relative w-full mx-auto container lg:container-none lg:mx-0 lg:w-auto"
+          >
+            <input
+              type="text"
+              placeholder="Search"
+              class="w-full py-2 rounded-md pl-10 pr-12 focus:outline-none placeholder:text-sm border border-gray-200"
+            />
+            <i
+              class="fa-solid fa-magnifying-glass text-sm absolute transform -translate-y-1/2 left-3 top-1/2 text-gray-400"
+            ></i>
+          </div>
+          <div class="hidden lg:flex items-center space-x-4">
+            <button class="bg-white rounded-md shadow py-2 px-4">
+              <i class="fa-regular fa-bell text-gray-400"></i>
+            </button>
+            <button
+              class="flex items-center space-x-1 bg-white py-2 px-3 rounded-md border border-gray-200"
+            >
+              <img
+                src="images/img_avatar1.png"
+                alt=""
+                class="w-7 h-7 rounded-full"
+              />
+              <p class="font-medium">dxrkfacee</p>
+            </button>
+          </div>
+        </div>
+
+        <div class="py-2 px-5 space-y-4 lg:px-7">
+          <h1 class="font-semibold text-lg lg:text-2xl">
+            Order Number <span class="text-blue-700">#256894</span>
+          </h1>
+          <div
+            class="flex flex-col space-y-4 lg:flex-row lg:space-y-0 lg:space-x-5"
+          >
+            <div class="flex flex-col space-y-6 w-full lg:w-[60%]">
+              <div
+                class="table-container bg-white border border-gray-200 shadow-md rounded py-4 px-3"
+              >
+                <table class="min-w-full">
+                  <thead class="">
+                    <tr>
+                      <th
+                        class="py-3 px-5 lg:px-1 border-b-2 border-gray-300 text-left text-lg leading-4 font-semibold text-gray-600 whitespace-nowrap"
+                      >
+                        Items summary
+                      </th>
+                      <th
+                        class="py-3 px-5 lg:px-1 border-b-2 border-gray-300 text-left text-sm leading-4 font-medium text-gray-600 whitespace-nowrap"
+                      >
+                        OTY
+                      </th>
+                      <th
+                        class="py-3 px-5 lg:px-1 border-b-2 border-gray-300 text-left text-sm leading-4 font-medium text-gray-600 whitespace-nowrap"
+                      >
+                        Price
+                      </th>
+                      <th
+                        class="py-3 px-5 lg:px-1 border-b-2 border-gray-300 text-left text-sm leading-4 font-medium text-gray-600 whitespace-nowrap"
+                      >
+                        Total Price
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody id="order-table-body"></tbody>
+                </table>
+              </div>
+              <div
+                class="bg-white border border-gray-200 shadow-md rounded py-4 px-3"
+              >
+                <table class="min-w-full">
+                  <thead class="">
+                    <tr>
+                      <th
+                        class="py-3 px-2 border-b-2 border-gray-300 text-left text-lg leading-4 font-semibold text-gray-600 whitespace-nowrap"
+                      >
+                        Customer And Order Details
+                      </th>
+                      <th class=""></th>
+                    </tr>
+                  </thead>
+                  <tbody id="customer-order-details"></tbody>
+                </table>
+              </div>
+            </div>
+            <div class="flex flex-col space-y-4 w-full lg:justify-between lg:w-[40%]">
+                <div class="bg-white rounded shadow-md px-4 py-8 border border-gray-200 space-y-4 xl:px-7">
+                    <div class="flex items-center justify-between">
+                        <p class="font-semibold text-gray-600 text-lg">Order summary</p>
+                        <div class="text-xs px-2 py-1.5 rounded bg-gray-100 text-[#405189]">On The Way</div>
+                    </div>
+                    <div class="flex flex-col space-y-2">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Order Created</p>
+                            <p class="text-xs">Sun, May 7, 2024</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Order Time</p>
+                            <p class="text-xs">06:24 AM</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Subtotal</p>
+                            <p class="text-xs">$375.00</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Delivery Fee</p>
+                            <p class="text-xs">$0.00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded shadow-md px-4 py-5 border border-gray-200 flex items-center justify-between xl:px-7">
+                    <p class="font-medium text-sm">Total</p>
+                    <p class="text-xs">$375.00</p>
+                </div>
+                <div class="bg-white rounded shadow-md px-4 py-5 border border-gray-200 space-y-3 lg:py-8 xl:px-7">
+                    <h1 class="font-semibold text-gray-600 text-lg">Delivery Address</h1>
+                    <div class="flex flex-col space-y-1">
+                        <div class="flex items-center space-x-2">
+                            <p class="font-medium text-sm">Address line:</p>
+                            <p class="text-xs">14 Anglesey Road</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <p class="font-medium text-sm">Flat/ Building Name:</p>
+                            <p class="text-xs">James Court</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <p class="font-medium text-sm">Street Name:</p>
+                            <p class="text-xs">Anglesey Road</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <p class="font-medium text-sm">Postcode:</p>
+                            <p class="text-xs">En3 4hy</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      document.getElementById("bar").addEventListener("click", function () {
+        let nav = document.getElementById("nav");
+        nav.classList.toggle("-translate-x-full");
+        nav.classList.toggle("translate-x-0");
+      });
+
+      const currentPaget = window.location.pathname.split("/").pop();
+      const buttons = {
+        "Admindashboard.html": document.getElementById("home-btn"),
+        "adminproduct.html": document.getElementById("product-btn"),
+        "Adminorders.html": document.getElementById("orders-btn"),
+        "Adminordersdetail.html": document.getElementById("orders-btn"),
+        "Admincustomers.html": document.getElementById("customers-btn"),
+      };
+
+      if (buttons[currentPaget]) {
+        buttons[currentPaget].classList.add("bg-blue-700", "text-white");
+      }
+
+      document.addEventListener("click", function (event) {
+        let nav = document.getElementById("nav");
+        let bar = document.getElementById("bar");
+
+        // Check if the click is outside the sidebar and bar button
+        if (
+          !nav.contains(event.target) &&
+          !bar.contains(event.target) &&
+          nav.classList.contains("translate-x-0")
+        ) {
+          nav.classList.add("-translate-x-full");
+          nav.classList.remove("translate-x-0");
+        }
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+            const orderTableBody = document.getElementById('order-table-body');
+            const customerOrderDetails = document.getElementById('customer-order-details');
+
+            // Example data for the first table
+            const orderItems = [
+                { image: 'images/oil.png', description: 'MatthiOla Oil 1400ml', qty: 1, price: 1280 },
+                { image: 'images/oil.png', description: 'MatthiOla Oil 1400ml', qty: 2, price: 2560 },
+                { image: 'images/oil.png', description: 'MatthiOla Oil 1400ml', qty: 2, price: 2560 },
+            ];
+
+            // Populate the first table
+            orderItems.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="py-3 px- lg:px-1 border-b border-gray-300 text-sm whitespace-nowrap">
+                        <div class="flex items-center pr-2">
+                            <img src="${item.image}" alt="${item.description}" class="h-10 w-10 mr-3 rounded">
+                            <span>${item.description}</span>
+                        </div>
+                    </td>
+                    <td class="py-3 px-5 lg:px-1 border-b border-gray-300 text-sm whitespace-nowrap">${item.qty}</td>
+                    <td class="py-3 px-5 lg:px-1 border-b border-gray-300 text-sm whitespace-nowrap">$${item.price / item.qty}</td>
+                    <td class="py-3 px-5 lg:px-1 border-b border-gray-300 text-sm whitespace-nowrap">$${item.price}</td>
+                `;
+                orderTableBody.appendChild(row);
+            });
+
+            // Example data for the second table
+            const customerDetails = [
+                { label: 'Customer Name', value: 'John Doe' },
+                { label: 'Phone Number', value: '75059333738' },
+                { label: 'Bag Option', value: 'No Bag' },
+                { label: 'Type', value: 'Delivery' },
+                { label: 'Note', value: 'N/A' },
+            ];
+
+            // Populate the second table
+            customerDetails.forEach(detail => {
+                const row = document.createElement('tr');
+                row.classList.add('flex', 'justify-between', 'py-3', 'border-b', 'px-2' );
+                row.innerHTML = `
+                    <td class="font-medium text-sm">${detail.label}</td>
+                    <td class="text-xs">${detail.value}</td>
+                `;
+                customerOrderDetails.appendChild(row);
+            });
+        });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapbox Integration</title>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+  <style>
+    #map {
+      width: 100%;
+      height: 500px;
+    }
+    .marker-container {
+      display: flex;
+      align-items: center;
+    }
+    .dot-marker {
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      border-radius: 50%;
+    }
+    .dot-label {
+      margin-left: 5px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoiZG9sbGFyaHVudGVyIiwiYSI6ImNseTdzN3o1NTA5YjkybXNkZnViZHY4MW0ifQ.xX5dKFHBJ4oTdvh6rgeLsA';
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [0, 20],
+    zoom: 0.5
+  });
+
+  const mapLocations = [
+    { lng: -106.3468, lat: 56.1304, name: 'Canada', sales: 75 },
+    { lng: -42.6043, lat: 71.7069, name: 'Greenland', sales: 47 },
+    { lng: 105.3188, lat: 61.5240, name: 'Russia', sales: 82 },
+    { lng: 35.2332, lat: 31.9466, name: 'Palestine', sales: 60 }
+  ];
+
+  mapLocations.forEach(location => {
+    const markerContainer = document.createElement('div');
+    markerContainer.className = 'marker-container';
+
+    const dotMarker = document.createElement('div');
+    dotMarker.className = 'dot-marker';
+
+    const label = document.createElement('div');
+    label.className = 'dot-label';
+    label.innerText = `${location.name} (Sales: ${location.sales})`;
+
+    markerContainer.appendChild(dotMarker);
+    markerContainer.appendChild(label);
+
+    new mapboxgl.Marker(markerContainer)
+      .setLngLat([location.lng, location.lat])
+      .addTo(map);
+  });
+
+  // Get user's location and add marker
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(position => {
+      const userLocation = [position.coords.longitude, position.coords.latitude];
+      
+      const userMarkerContainer = document.createElement('div');
+      userMarkerContainer.className = 'marker-container';
+
+      const userDotMarker = document.createElement('div');
+      userDotMarker.className = 'dot-marker';
+
+      const userLabel = document.createElement('div');
+      userLabel.className = 'dot-label';
+      userLabel.innerText = 'Your Location';
+
+      userMarkerContainer.appendChild(userDotMarker);
+      userMarkerContainer.appendChild(userLabel);
+
+      new mapboxgl.Marker(userMarkerContainer)
+        .setLngLat(userLocation)
+        .addTo(map);
+
+      // Center the map on the user's location
+      map.setCenter(userLocation);
+      map.setZoom(10);
+    }, error => {
+      console.error('Error getting location: ', error);
+    });
+  } else {
+    console.error('Geolocation is not supported by this browser.');
+  }
+</script>
+
+</body>
+</html>
